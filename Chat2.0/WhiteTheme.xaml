@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Chat2._0">
+
+    <Style x:Key="Base">
+        <Setter Property="TextBlock.FontFamily" Value="Arial"></Setter>
+        <!--<Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>-->
+    </Style>
+    <Style TargetType="TextBlock" BasedOn="{StaticResource Base}">
+        <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBox" BasedOn="{StaticResource Base}">
+
+    </Style>
+    <Style TargetType="Label" BasedOn="{StaticResource Base}">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="Button" BasedOn="{StaticResource Base}">
+        <Setter Property="Margin" Value="10"/>
+    </Style>
+</ResourceDictionary>
