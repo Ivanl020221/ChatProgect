@@ -15,14 +15,15 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label FontWeight="Bold" FontSize="25">Авторизация</Label>
+        <Label FontWeight="Bold" HorizontalAlignment="Center" FontSize="25">Авторизация</Label>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock FontSize="20">Логин</TextBlock>
-            <TextBox Name="Login" Margin="40,20" MinHeight="20" MinWidth="200" Grid.Row="1"></TextBox>
+            <GroupBox Header="Lgoin">
+                
+            </GroupBox>
         </Grid>
     </Grid>
 </Page>

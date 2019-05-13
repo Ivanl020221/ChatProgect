@@ -11,13 +11,13 @@
         <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
         <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
     </Style>
-    <Style TargetType="TextBox" BasedOn="{StaticResource Base}">
-
-    </Style>
     <Style TargetType="Label" BasedOn="{StaticResource Base}">
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
         <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="GroupBox" BasedOn="{StaticResource Base}">
+        <Setter Property="BorderBrush" Value="Transparent"/>
     </Style>
     <Style TargetType="Button" BasedOn="{StaticResource Base}">
         <Setter Property="Margin" Value="10"/>
