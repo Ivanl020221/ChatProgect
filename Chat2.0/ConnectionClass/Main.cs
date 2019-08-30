@@ -8,7 +8,7 @@ using Chat2._0.Utilites;
 
 namespace Chat2._0.ConnectionClass
 {
-    class Main
+    class Mains
     {
         public IEnumerable<SelectAllMessage> MainMetod(long UserId) => ApiConnect.ApiContext<IEnumerable<SelectAllMessage>>(Controller.Main, new ParamsGenerator().AddParams(ParamsGenerator.CreateParams("UserId", UserId)).GetParams());
     }

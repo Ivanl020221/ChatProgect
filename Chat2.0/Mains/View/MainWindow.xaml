@@ -1,0 +1,14 @@
+﻿<Window x:Class="Chat2._0.Mains.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chat2._0.Mains.View"
+        mc:Ignorable="d"
+        Title="{Binding StringFormat='Chat v2.0 - {0}' , Path=CurrentTitle, UpdateSourceTrigger=PropertyChanged}" 
+        SizeToContent="WidthAndHeight">
+    <Window.Resources>
+    </Window.Resources>
+    <Frame x:Name="mai"
+        Content="{Binding Path=CurrentPage, UpdateSourceTrigger=PropertyChanged}"></Frame>
+</Window>

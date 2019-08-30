@@ -17,7 +17,7 @@ using Chat2._0.Utilites;
 using static Chat2._0.Utilites.ApiConnect;
 using static Chat2._0.Utilites.ParamsGenerator;
 
-namespace Chat2._0.Main
+namespace Chat2._0.Mains.View
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -27,14 +27,9 @@ namespace Chat2._0.Main
         public MainWindow()
         {
             this.InitializeComponent();
-            this.MainFrame.Navigated += this.NavigatePage;
-            
+            this.DataContext = new Mains.ViewModel.MainWindowViewModel();
         }
 
-        private void NavigatePage(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-            if (this.MainFrame.Content is Page page)
-                this.Title = page.Title;
-        }
+       
     }
 }

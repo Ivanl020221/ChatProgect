@@ -60,18 +60,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AllPage\AuthPage.xaml.cs">
-      <DependentUpon>AuthPage.xaml</DependentUpon>
+    <Compile Include="AllPage\Auth\ViewModel\AutorizatonViewModel.cs" />
+    <Compile Include="AllPage\Auth\View\Autorization.xaml.cs">
+      <DependentUpon>Autorization.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConnectionClass\Auth.cs" />
     <Compile Include="ConnectionClass\Chat.cs" />
     <Compile Include="ConnectionClass\Main.cs" />
+    <Compile Include="Core\Command.cs" />
+    <Compile Include="Core\PropertyChanged.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="ConnectionClass\Search.cs" />
     <Compile Include="Entity\ChatRoom.cs" />
     <Compile Include="Entity\Departments.cs" />
     <Compile Include="Entity\SelectAllMessage.cs" />
-    <Compile Include="Main\MainWindow.xaml.cs">
+    <Compile Include="Mains\ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="Mains\View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
@@ -111,11 +115,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AllPage\AuthPage.xaml">
+    <Page Include="AllPage\Auth\View\Autorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Main\MainWindow.xaml">
+    <Page Include="Mains\View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,5 +145,6 @@
       <Version>2.9.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

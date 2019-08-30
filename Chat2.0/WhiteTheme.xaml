@@ -22,4 +22,8 @@
     <Style TargetType="Button" BasedOn="{StaticResource Base}">
         <Setter Property="Margin" Value="10"/>
     </Style>
+    <Style TargetType="GroupBox" BasedOn="{StaticResource Base}">
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Height" Value="60"/>
+    </Style>
 </ResourceDictionary>
