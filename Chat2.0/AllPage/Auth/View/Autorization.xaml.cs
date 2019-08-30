@@ -20,10 +20,11 @@ namespace Chat2._0.AllPage.Auth.View
     /// </summary>
     public partial class Autorization : Page
     {
-        public Autorization()
+
+        public Autorization(Mains.ViewModel.MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
-            this.DataContext =new Auth.ViewModel.AutorizatonViewModel();
+            this.DataContext =new Auth.ViewModel.AutorizatonViewModel(mainWindowViewModel);
         }
     }
 }

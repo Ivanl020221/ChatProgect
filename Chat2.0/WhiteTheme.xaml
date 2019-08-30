@@ -20,7 +20,6 @@
         <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
     </Style>
     <Style TargetType="Button" BasedOn="{StaticResource Base}">
-        <Setter Property="Margin" Value="10"/>
     </Style>
     <Style TargetType="GroupBox" BasedOn="{StaticResource Base}">
         <Setter Property="BorderBrush" Value="Transparent"/>

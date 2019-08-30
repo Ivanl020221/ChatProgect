@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chat2._0.Core
 {
-    class NotifyPropertyChanged : INotifyPropertyChanged
+    public class NotifyPropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

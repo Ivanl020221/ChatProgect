@@ -9,15 +9,34 @@ using System.Windows.Input;
 namespace Chat2._0.Mains.ViewModel
 {
 
-    class MainWindowViewModel : Core.NotifyPropertyChanged
+    public class MainWindowViewModel : Core.NotifyPropertyChanged
     {
-        public Page CurrentPage { get; set; }
+        private Page _CurrentPage;
 
-        public string CurrentTitle { get; set; }
+        private string _CurrentTitle;
 
+        public Page CurrentPage
+        {
+            get => _CurrentPage;
+            set
+            {
+                _CurrentPage = value;
+                OnPropertyChanged("CurrentPage");
+            }
+        }
+
+        public string CurrentTitle
+        {
+            get => _CurrentTitle;
+            set
+            {
+                _CurrentTitle = value;
+                OnPropertyChanged("CurrentTitle");
+            }
+        }
         public MainWindowViewModel()
         {
-            this.SetCurrentPage(new AllPage.Auth.View.Autorization());
+            this.SetCurrentPage(new AllPage.Auth.View.Autorization(this));
         }
 
         private void SetTitle(string PageTitle)
@@ -25,7 +44,7 @@ namespace Chat2._0.Mains.ViewModel
             CurrentTitle = PageTitle;
         }
 
-        private void SetCurrentPage(Page page)
+        public void SetCurrentPage(Page page)
         {
             this.CurrentPage = page;
             this.SetTitle(page.Title);
