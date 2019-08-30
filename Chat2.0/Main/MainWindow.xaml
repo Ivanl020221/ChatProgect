@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chat2._0.Main"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+    </Window.Resources>
+    <Frame Name="MainFrame" Source="/Chat2.0;component/AllPage/AuthPage.xaml"/>
 </Window>
