@@ -13,18 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Chat2._0.AllPage.Auth.View
+namespace ChatServerSetings.View.AllWindow
 {
     /// <summary>
-    /// Логика взаимодействия для Autorization.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class Autorization : Page
+    public partial class MainWindow : Window
     {
-
-        public Autorization()
+        public MainWindow()
         {
             InitializeComponent();
-            this.DataContext =new Auth.ViewModel.AutorizatonViewModel();
+            DataContext = new ViewModel.MainViewModel();
         }
     }
 }

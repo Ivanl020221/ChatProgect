@@ -8,7 +8,7 @@ using Chat2._0.Utilites;
 
 namespace Chat2._0.ConnectionClass
 {
-    class Auth
+    internal class Auth
     {
         public Employee AuthMetod(string UserName, string Password)
         {

@@ -9,8 +9,10 @@ using System.Windows.Input;
 namespace Chat2._0.Mains.ViewModel
 {
 
-    public class MainWindowViewModel : Core.NotifyPropertyChanged
+    internal class MainWindowViewModel : Core.NotifyPropertyChanged
     {
+        internal static MainWindowViewModel MainViewModel;
+
         private Page _CurrentPage;
 
         private string _CurrentTitle;
@@ -36,7 +38,8 @@ namespace Chat2._0.Mains.ViewModel
         }
         public MainWindowViewModel()
         {
-            this.SetCurrentPage(new AllPage.Auth.View.Autorization(this));
+            MainViewModel = this;
+            this.SetCurrentPage(new AllPage.Auth.View.Autorization());
         }
 
         private void SetTitle(string PageTitle)

@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Label FontWeight="Bold">Авторизация</Label>
         <GroupBox Header="Логин" Grid.Row="1">
-            <TextBox Text="{Binding Path=Login}"></TextBox>
+            <TextBox Text="{Binding Path=Login, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </GroupBox>
         <GroupBox Header="Пароль" Grid.Row="2">
             <Grid>
@@ -28,12 +28,13 @@
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding FontLock, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox Text="{Binding Path=Password,Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding FontLock, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <Button Grid.Column="1" Command="{Binding VisiblePasswordCommand}">
                     <Image Source="/Chat2.0;component/Logo/i.jpg" />
                 </Button>
             </Grid>
         </GroupBox>
         <CheckBox Grid.Row="3" VerticalAlignment="Center">Запомнить меня</CheckBox>
+        
     </Grid>
 </Page>

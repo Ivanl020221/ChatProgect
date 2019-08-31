@@ -13,18 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Chat2._0.AllPage.Auth.View
+namespace ChatServerSetings.View.AllPage
 {
     /// <summary>
-    /// Логика взаимодействия для Autorization.xaml
+    /// Логика взаимодействия для ChangePathPage.xaml
     /// </summary>
-    public partial class Autorization : Page
+    public partial class ChangePathPage : Page
     {
-
-        public Autorization()
+        public ChangePathPage()
         {
             InitializeComponent();
-            this.DataContext =new Auth.ViewModel.AutorizatonViewModel();
+            DataContext = new ViewModel.ChangePathViewModel();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

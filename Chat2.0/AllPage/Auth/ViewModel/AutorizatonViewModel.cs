@@ -47,7 +47,7 @@ namespace Chat2._0.AllPage.Auth.ViewModel
 
         private bool IsLock = true;
 
-        public AutorizatonViewModel(Mains.ViewModel.MainWindowViewModel mainWindowViewModel)
+        public AutorizatonViewModel()
         {
             VisiblePasswordCommand = new Core.Command(VisiblePassword);
         }

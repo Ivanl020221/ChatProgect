@@ -12,136 +12,33 @@ namespace Chat2._0.Utilites
     internal class ApiConnect
     {
 
-        private static readonly string Path = Chat2._0.Properties.Settings.Default.Path;
-
         #region ApiContext
 
         public static T ApiContext<T>(Controller controller, string paramsConnection) where T : class
         {
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    string PathParam = $"{Path}/{controller}?{paramsConnection}";
-                    client.Headers.Add(HttpRequestHeader.ContentType, $"{Connect.application}/{Type.json}");
-                    return Utilites.JsonDeSerialization<T>(client.DownloadString(new Uri(PathParam)));
-                }
-            }
-            catch
-            {
-                throw;
-            }
-
+            return ApiContext<T, object>(controller, Metod.GET, Type.json, Connect.application, null, FromType.UriFullType, paramsConnection);
         }
-
         public static T ApiContext<T>(Controller controller, FromType fromType, string paramsConnection) where T : class
         {
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    string PathParam = fromType == FromType.UriFullType ? $"{Path}/{controller}?{paramsConnection}" : $"{Path}/{controller}/{paramsConnection}";
-                    client.Headers.Add(HttpRequestHeader.ContentType, $"{Connect.application}/{Type.json}");
-                    return Utilites.JsonDeSerialization<T>(client.DownloadString(new Uri(PathParam)));
-                }
-            }
-            catch
-            {
-                throw;
-            }
-
+            return ApiContext<T, object>(controller, Metod.GET, Type.json, Connect.application, null, fromType, paramsConnection);
         }
-
         public static T ApiContext<T, V>(Controller controller, Metod metod, V obj, FromType fromType, string paramsConnection) where T : class where V : class
         {
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    string PathParam = fromType == FromType.UriFullType ? $"{Path}/{controller}?{paramsConnection}" : $"{Path}/{controller}/{paramsConnection}";
-                    client.Headers.Add(HttpRequestHeader.ContentType, $"{Connect.application}/{Type.json}");
-                    if (metod == Metod.GET)
-                    {
-                        return Utilites.JsonDeSerialization<T>(client.DownloadString(PathParam));
-                    }
-                    else
-                    {
-                        try
-                        {
-                            return Utilites.JsonDeSerialization<T>(client.UploadData(PathParam, metod.ToString(), Utilites.JsonSerialization(obj)));
-                        }
-                        catch (ArgumentNullException)
-                        {
-                            return null;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                throw;
-            }
+            return ApiContext<T, V>(controller, metod, Type.json, Connect.application, obj, fromType, paramsConnection);
         }
-
         public static T ApiContext<T, V>(Controller controller, Metod metod, Type type, V obj, FromType fromType, string paramsConnection) where T : class where V : class
         {
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    string PathParam = fromType == FromType.UriFullType ? $"{Path}/{controller}?{paramsConnection}" : $"{Path}/{controller}/{paramsConnection}";
-                    client.Headers.Add(HttpRequestHeader.ContentType, $"{Connect.application}/{type}");
-                    if (metod == Metod.GET)
-                    {
-                        return type == Type.json
-                            ? Utilites.JsonDeSerialization<T>(client.DownloadString(PathParam))
-                            : Utilites.XmlDeSerialization<T>(client.DownloadString(PathParam));
-                    }
-                    else
-                    {
-                        try
-                        {
-                            return Utilites.JsonDeSerialization<T>(client.UploadData(PathParam, metod.ToString(), Utilites.JsonSerialization(obj)));
-                        }
-                        catch (ArgumentNullException)
-                        {
-                            return null;
-                        }
-                    }
-                }
-
-            }
-            catch
-            {
-                throw;
-            }
+            return ApiContext<T, V>(controller, metod, type, Connect.application, obj, fromType, paramsConnection);
         }
-
         public static T ApiContext<T, V>(Controller controller, Metod metod, Type type, Connect connect, V obj, FromType fromType, string paramsConnection) where T : class where V : class
         {
             try
             {
                 using (WebClient client = new WebClient())
                 {
-                    string PathParam = fromType == FromType.UriFullType ? $"{Path}/{controller}?{paramsConnection}" : $"{Path}/{controller}/{paramsConnection}";
-                    client.Headers.Add(HttpRequestHeader.ContentType, $"{connect}/{type}");
-                    if (metod == Metod.GET)
-                    {
-                        return type == Type.json
-                            ? Utilites.JsonDeSerialization<T>(client.DownloadString(PathParam))
-                            : Utilites.XmlDeSerialization<T>(client.DownloadString(PathParam));
-                    }
-                    else
-                    {
-                        try
-                        {
-                            return Utilites.JsonDeSerialization<T>(client.UploadData(PathParam, metod.ToString(), Utilites.JsonSerialization(obj)));
-                        }
-                        catch (ArgumentNullException)
-                        {
-                            return null;
-                        }
-                    }
+                    UpdateSettings();
+                    string PathParam = SettingsClient(controller, paramsConnection, client, fromType, type, connect);
+                    return PostOrGet<T, V>(metod, obj, client, PathParam, type);
                 }
             }
             catch
@@ -150,6 +47,54 @@ namespace Chat2._0.Utilites
             }
         }
         #endregion
+        private static T PostOrGet<T, V>(Metod metod, V obj, WebClient client, string PathParam, Type type)
+            where T : class
+            where V : class
+        {
+            if (metod == Metod.GET)
+            {
+                return SerializeOnType<T>(type, client, PathParam);
+            }
+            else
+            {
+                return POSTMetod<T, V>(metod, obj, client, PathParam);
+            }
+        }
+        private static string SettingsClient(Controller controller, string paramsConnection, WebClient client, FromType fromType, Type type, Connect connect)
+        {
+            string PathParam = GeneratePathParam(controller, fromType, paramsConnection);
+            AddHeader(client, connect, type);
+            return PathParam;
+        }
+        private static T SerializeOnType<T>(Type type, WebClient client, string PathParam) where T : class => type == Type.json
+                                    ? GetJson<T>(client, PathParam)
+                                    : Utilites.XmlDeSerialization<T>(client.DownloadString(PathParam));
+        private static void AddHeader(WebClient client, Connect connect, Type type)
+        {
+            client.Headers.Add(HttpRequestHeader.ContentType, $"{Connect.application}/{Type.json}");
+        }
+        private static void UpdateSettings()
+        {
+            Properties.Settings.Default.Upgrade();
+        }
+        private static string GenerateFullPathParam(Controller controller, string paramsConnection)
+        {
+            return $"{Properties.Settings.Default.Path}/{controller}?{paramsConnection}";
+        }
+        private static string GeneratePathParam(Controller controller, FromType fromType, string paramsConnection)
+        {
+            return fromType == FromType.UriFullType ? GenerateFullPathParam(controller, paramsConnection) : $"{Properties.Settings.Default.Path}/{controller}/{paramsConnection}";
+        }
+        private static T POSTMetod<T, V>(Metod metod, V obj, WebClient client, string PathParam)
+            where T : class
+            where V : class
+        {
+            return Utilites.JsonDeSerialization<T>(client.UploadData(PathParam, metod.ToString(), Utilites.JsonSerialization(obj)));
+        }
+        private static T GetJson<T>(WebClient client, string PathParam) where T : class
+        {
+            return Utilites.JsonDeSerialization<T>(client.DownloadString(new Uri(PathParam)));
+        }
     }
 
     public static class MyFunc
