@@ -55,7 +55,7 @@ namespace Chat2._0.Utilites
         {
             if (metod == Metod.GET)
             {
-                return SerializeOnType<T>(type, client, PathParam);
+                return GetOnType<T>(type, client, PathParam);
             }
             else
             {
@@ -68,7 +68,7 @@ namespace Chat2._0.Utilites
             AddHeader(client, connect, type);
             return PathParam;
         }
-        private static T SerializeOnType<T>(Type type, WebClient client, string PathParam) where T : class => type == Type.json
+        private static T GetOnType<T>(Type type, WebClient client, string PathParam) where T : class => type == Type.json
                                     ? GetJson<T>(client, PathParam)
                                     : Utilites.XmlDeSerialization<T>(client.DownloadString(PathParam));
         private static void AddHeader(WebClient client, Connect connect, Type type)
