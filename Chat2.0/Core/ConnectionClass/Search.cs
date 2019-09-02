@@ -10,8 +10,15 @@ namespace Chat2._0.ConnectionClass
 {
     class Search
     {
-        public IEnumerable<Departments> Departments => ApiConnect.ApiContext<IEnumerable<Departments>>(Controller.Search,FromType.UriContent, "");
+        public IEnumerable<DepatmentsModel> Departments =>
+            ApiConnect.ApiContext<IEnumerable<DepatmentsModel>>(Controller.Search,FromType.UriContent, "");
 
-        public IEnumerable<Employee> SearchEmployees(string Departmens, string SearchName) => ApiConnect.ApiContext<IEnumerable<Employee>>(Controller.Search, new ParamsGenerator().AddParams(ParamsGenerator.CreateParams("Departmens", Departmens), ParamsGenerator.CreateParams("SearchName", SearchName)).GetParams());
+        public IEnumerable<Employee> SearchEmployees(string Departmens, string SearchName) =>
+            ApiConnect.ApiContext<IEnumerable<Employee>>(
+                Controller.Search, 
+                new ParamsGenerator().AddParams(
+                        ParamsGenerator.CreateParams("Departmens", Departmens), 
+                        ParamsGenerator.CreateParams("SearchName", SearchName)
+                    ).GetParams());
     }
 }

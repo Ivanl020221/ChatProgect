@@ -10,6 +10,11 @@ namespace Chat2._0.ConnectionClass
 {
     class Mains
     {
-        public IEnumerable<SelectAllMessage> MainMetod(long UserId) => ApiConnect.ApiContext<IEnumerable<SelectAllMessage>>(Controller.Main, new ParamsGenerator().AddParams(ParamsGenerator.CreateParams("UserId", UserId)).GetParams());
+        public IEnumerable<SelectAllMessage> MainMetod(long UserId) => 
+            ApiConnect.ApiContext<IEnumerable<SelectAllMessage>>(
+                Controller.Main,
+                new ParamsGenerator().AddParams(
+                        ParamsGenerator.CreateParams("UserId", UserId)
+                    ).GetParams());
     }
 }

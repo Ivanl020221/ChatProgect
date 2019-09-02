@@ -69,6 +69,7 @@
     <Compile Include="Core\ConnectionClass\Main.cs" />
     <Compile Include="Core\Command.cs" />
     <Compile Include="Core\PropertyChanged.cs" />
+    <Compile Include="Entity\DepatmentsModel.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="Core\ConnectionClass\Search.cs" />
     <Compile Include="Entity\ChatRoom.cs" />

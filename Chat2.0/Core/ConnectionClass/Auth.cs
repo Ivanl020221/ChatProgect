@@ -12,7 +12,11 @@ namespace Chat2._0.ConnectionClass
     {
         public Employee AuthMetod(string UserName, string Password)
         {
-            return ApiConnect.ApiContext<Employee>(Controller.Auth, new ParamsGenerator().AddParams(ParamsGenerator.CreateParams("UserName", UserName), ParamsGenerator.CreateParams("Password", Password)).GetParams());
+            return ApiConnect.ApiContext<Employee>
+                (Controller.Auth, 
+                new ParamsGenerator().AddParams(
+                    ParamsGenerator.CreateParams("UserName", UserName), 
+                    ParamsGenerator.CreateParams("Password", Password)).GetParams());
         }
     }
 }

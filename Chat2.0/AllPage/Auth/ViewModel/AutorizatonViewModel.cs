@@ -10,6 +10,8 @@ namespace Chat2._0.AllPage.Auth.ViewModel
 {
     class AutorizatonViewModel : Core.NotifyPropertyChanged
     {
+        private readonly string Path = $"{AppDomain.CurrentDomain.BaseDirectory}\\Cook";
+
         private string _FontLock = "MS Outlook", _Login, _Password;
 
         //MS Outlook
@@ -52,6 +54,11 @@ namespace Chat2._0.AllPage.Auth.ViewModel
             VisiblePasswordCommand = new Core.Command(VisiblePassword);
         }
 
+        public void LogInUser(object obj)
+        {
+
+        }
+
         private void VisiblePassword(object obj)
         {
             FontLock = !IsLock ? "MS Outlook" : "Arial";
@@ -61,6 +68,11 @@ namespace Chat2._0.AllPage.Auth.ViewModel
         private void ReverseLock()
         {
             this.IsLock = !this.IsLock;
+        }
+
+        private void SaveCookie(string Login,string Password)
+        {
+            Application.SetCookie(new Uri(this.Path), $"{Login}|{Password}");
         }
     }
 }

@@ -16,15 +16,15 @@ namespace Chat2._0.Utilites
 
         public static T ApiContext<T>(Controller controller, string paramsConnection) where T : class
         {
-            return ApiContext<T, object>(controller, Metod.GET, Type.json, Connect.application, null, FromType.UriFullType, paramsConnection);
+            return ApiContext<T>(controller, FromType.UriFullType, paramsConnection);
         }
         public static T ApiContext<T>(Controller controller, FromType fromType, string paramsConnection) where T : class
         {
-            return ApiContext<T, object>(controller, Metod.GET, Type.json, Connect.application, null, fromType, paramsConnection);
+            return ApiContext<T,object>(controller, Metod.GET, null, fromType, paramsConnection);
         }
         public static T ApiContext<T, V>(Controller controller, Metod metod, V obj, FromType fromType, string paramsConnection) where T : class where V : class
         {
-            return ApiContext<T, V>(controller, metod, Type.json, Connect.application, obj, fromType, paramsConnection);
+            return ApiContext<T, V>(controller, metod, Type.json, obj, fromType, paramsConnection);
         }
         public static T ApiContext<T, V>(Controller controller, Metod metod, Type type, V obj, FromType fromType, string paramsConnection) where T : class where V : class
         {
@@ -47,6 +47,8 @@ namespace Chat2._0.Utilites
             }
         }
         #endregion
+
+        #region HelpApiMetod
         private static T PostOrGet<T, V>(Metod metod, V obj, WebClient client, string PathParam, Type type)
             where T : class
             where V : class
@@ -95,6 +97,8 @@ namespace Chat2._0.Utilites
         {
             return Utilites.JsonDeSerialization<T>(client.DownloadString(new Uri(PathParam)));
         }
+
+        #endregion
     }
 
     public static class MyFunc
@@ -105,7 +109,7 @@ namespace Chat2._0.Utilites
         public static double ToDouble(this object value) => Convert.ToDouble(value);
     }
 
-    public enum Metod
+    internal enum Metod
     {
         GET,
         POST,
@@ -113,7 +117,7 @@ namespace Chat2._0.Utilites
         DELETE
     }
 
-    public enum Controller
+    internal enum Controller
     {
         Main,
         Auth,
@@ -121,19 +125,19 @@ namespace Chat2._0.Utilites
         Search
     }
 
-    public enum Type
+    internal enum Type
     {
         json,
         xml
     }
 
-    public enum FromType
+    internal enum FromType
     {
         UriContent,
         UriFullType
     }
 
-    public enum Connect
+    internal enum Connect
     {
         text,
         application

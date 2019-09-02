@@ -6,9 +6,29 @@ using System.Threading.Tasks;
 
 namespace Chat2._0.Entity
 {
-    internal class Departments
-    { 
-        public long IdDepartments { get; set; }
-        public string Name { get; set; }
+    internal class Departments : Core.NotifyPropertyChanged
+    {
+        private long _IdDepartments;
+
+        private string _Name;
+
+        public long IdDepartments
+        {
+            get { return _IdDepartments; }
+            set
+            {
+                _IdDepartments = value;
+                OnPropertyChanged("IdDepartments");
+            }
+        }
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                _Name = value;
+                OnPropertyChanged("Name");
+            }
+        }
     }
 }
