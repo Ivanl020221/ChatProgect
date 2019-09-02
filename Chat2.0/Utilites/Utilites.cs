@@ -6,11 +6,23 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Chat2._0.Utilites
 {
+    public delegate void SetPage(Page page);
+
+
     internal class Utilites
     {
+        public static SetPage SetPage;
+
+        public static void SetPageUtilite(Page page)
+        {
+            if (!(SetPage is null))
+                SetPage(page);
+        }
+
         public static T XmlDeSerialization<T>(string Xml) where T : class
         {
             if (Xml is null)
@@ -26,7 +38,7 @@ namespace Chat2._0.Utilites
         {
             if (Json is null)
             {
-                throw new ArgumentNullException(nameof(Json),"Element is null");
+                throw new ArgumentNullException(nameof(Json), "Element is null");
             }
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
             return serializer.ReadObject(new MemoryStream(Encoding.Default.GetBytes(Json))) is T obj ? obj : null;

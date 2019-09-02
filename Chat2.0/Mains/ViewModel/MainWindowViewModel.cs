@@ -38,14 +38,15 @@ namespace Chat2._0.Mains.ViewModel
         }
         public MainWindowViewModel()
         {
-            MainViewModel = this;
-            this.SetCurrentPage(new AllPage.Auth.View.Autorization());
+            Utilites.Utilites.SetPage = SetCurrentPage;
+            Utilites.Utilites.SetPageUtilite(new AllPage.Auth.View.Autorization());
         }
 
         private void SetTitle(string PageTitle)
         {
             CurrentTitle = PageTitle;
         }
+
 
         public void SetCurrentPage(Page page)
         {
